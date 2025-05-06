@@ -1,13 +1,13 @@
-import AuthLayout from "@/components/layouts/AuthLayout";
-import CommonLayout from "@/components/layouts/CommonLayout";
-import RootLayout from "@/components/layouts/RootLayout";
-import UserLayout from "@/components/layouts/UserLayout";
 import AuthWrapper from "@/components/wrappers/AuthWrapper";
-import SignInPage from "@/pages/(authentication)/SignInPage";
-import SignUpPage from "@/pages/(authentication)/SignUpPage";
-import ErrorPage from "@/pages/(common)/ErrorPage";
+import AuthLayout from "@/layouts/AuthLayout";
+import CommonLayout from "@/layouts/CommonLayout";
+import RootLayout from "@/layouts/RootLayout";
+import UserLayout from "@/layouts/UserLayout";
+import SignInPage from "@/pages/(auth)/SignInPage";
+import SignUpPage from "@/pages/(auth)/SignUpPage";
 import HomePage from "@/pages/(common)/HomePage";
-import NotFoundPage from "@/pages/(common)/NotFoundPage";
+import ErrorPage from "@/pages/(partial)/ErrorPage";
+import NotFoundPage from "@/pages/(partial)/NotFoundPage";
 import ProfilePage from "@/pages/(user)/ProfilePage";
 import { createBrowserRouter } from "react-router";
 
@@ -24,9 +24,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "user",
-        element: <AuthWrapper><UserLayout /></AuthWrapper>,
+        element: (
+          <AuthWrapper>
+            <UserLayout />
+          </AuthWrapper>
+        ),
         children: [
-          { path: "profile", element: <AuthWrapper><ProfilePage /></AuthWrapper> },
+          {
+            path: "profile",
+            element: (
+              <AuthWrapper>
+                <ProfilePage />
+              </AuthWrapper>
+            ),
+          },
         ],
       },
       {

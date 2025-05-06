@@ -1,5 +1,5 @@
 import api from "@/lib/api";
-import { AuthResponse } from "@/types/response.type";
+import type { AuthResponse } from "@/types/response.type";
 
 interface SignInPayload {
   email: string;

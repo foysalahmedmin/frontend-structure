@@ -1,17 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface UserState {
-  token?: string;
-  info?: {
-    _id: string;
-    name: string;
-    email: string;
-    role: string;
-    [key: string]: unknown;
-  }
-  isAuthenticated?: boolean;
-  [key: string]: unknown;
-}
+import type { UserState } from "@/types/state.type";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const getInitialUser = (): UserState => {
   try {
@@ -34,7 +23,7 @@ export const userSlice = createSlice({
       if (user?.accessToken) {
         localStorage.setItem(
           "user",
-          JSON.stringify({ ...user, isAuthenticated: true })
+          JSON.stringify({ ...user, isAuthenticated: true }),
         );
         return { ...user, isAuthenticated: true };
       }

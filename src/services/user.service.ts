@@ -1,14 +1,7 @@
 import api from "@/lib/api";
+import type { UserResponse } from "@/types/response.type";
 
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-    role?: string;
-    [key: string]: unknown;
-}
-
-export async function fetchSelf(): Promise<User> {
-    const response = await api.get("/api/user/self");
-    return response?.data[0] as User;
+export async function fetchSelf(): Promise<UserResponse> {
+  const response = await api.get("/api/user/self");
+  return response?.data as UserResponse;
 }

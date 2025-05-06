@@ -1,9 +1,9 @@
-import type { UserState } from "@/redux/slices/user-slice";
 import {
-    clearUser as clearUserSlice,
-    setUser as setUserSlice,
+  clearUser as clearUserSlice,
+  setUser as setUserSlice,
 } from "@/redux/slices/user-slice";
 import type { AppDispatch, RootState } from "@/redux/store";
+import type { UserState } from "@/types/state.type";
 import { useDispatch, useSelector } from "react-redux";
 
 const useUser = () => {
