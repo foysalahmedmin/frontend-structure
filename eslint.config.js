@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default tseslint.config(
   {
-    ignores: ["dist", "**/*.d.ts", "**/*.css"],
+    ignores: ["dist", "**/*.d.ts", "**/*.css", "vite.config.ts"],
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],

@@ -9,10 +9,7 @@ export default defineConfig({
     host: "::",
     port: 8080,
   },
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
