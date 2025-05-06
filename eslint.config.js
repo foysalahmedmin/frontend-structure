@@ -4,7 +4,11 @@ import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
+import path from "path";
 import tseslint from "typescript-eslint";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default tseslint.config(
   {
@@ -16,19 +20,27 @@ export default tseslint.config(
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.app.json", "./tsconfig.node.json"],
-        sourceType: "module",
-        ecmaVersion: 2022,
-        ecmaFeatures: { jsx: true },
-      },
+      ecmaVersion: 2022,
+      sourceType: "module",
       globals: {
         ...globals.browser,
         ...globals.node,
         ...globals.es2021,
       },
+      parserOptions: {
+        project: ["./tsconfig.app.json"],
+        tsconfigRootDir: __dirname,
+        ecmaFeatures: { jsx: true },
+      },
     },
-    settings: { react: { version: "detect" } },
+    settings: {
+      react: { version: "detect", runtime: "automatic" },
+      "import/resolver": {
+        typescript: {
+          project: "./tsconfig.json",
+        },
+      },
+    },
     plugins: {
       react,
       "react-hooks": reactHooks,
@@ -36,10 +48,12 @@ export default tseslint.config(
       prettier,
     },
     rules: {
+      /* Base Rules */
       "no-undef": "off",
       "no-unused-vars": "off",
       "no-console": "warn",
 
+      /* React Rules */
       "react/prop-types": "off",
       "react/jsx-no-target-blank": "off",
       "react/react-in-jsx-scope": "off",
