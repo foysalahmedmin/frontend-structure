@@ -1,6 +1,6 @@
 import Loading from "@/components/partials/Loading";
-import { useAuth } from "@/components/providers/AuthProvider";
-import { ReactNode } from "react";
+import useUser from "@/hooks/states/useUser";
+import React, { ReactNode } from "react";
 import { Navigate, useLocation } from "react-router";
 
 interface PrivateRouteProps {
@@ -8,7 +8,7 @@ interface PrivateRouteProps {
 }
 
 const AuthWrapper: React.FC<PrivateRouteProps> = ({ children }) => {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading } = useUser();
   const location = useLocation();
 
   if (isLoading) {
@@ -16,13 +16,7 @@ const AuthWrapper: React.FC<PrivateRouteProps> = ({ children }) => {
   }
 
   if (!user?.isAuthenticated) {
-    return (
-      <Navigate
-        to="/auth/sign-in"
-        state={{ from: location }}
-        replace
-      />
-    );
+    return <Navigate to="/auth/sign-in" state={{ from: location }} replace />;
   }
 
   return <>{children}</>;

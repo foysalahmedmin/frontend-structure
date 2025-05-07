@@ -14,7 +14,7 @@ const useUser = () => {
 
   const clearUser = () => dispatch(clearUserSlice());
 
-  return { user, setUser, clearUser };
+  return { isLoading: false, user, setUser, clearUser };
 };
 
 export default useUser;
