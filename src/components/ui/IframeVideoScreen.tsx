@@ -2,9 +2,10 @@
 
 import useScreenSize from "@/hooks/ui/useScreenSize";
 import { cn } from "@/lib/utils";
+import type { ComponentProps } from "react";
 import React from "react";
 
-type IframeVideoScreenProps = {
+type IframeVideoScreenProps = ComponentProps<"div"> & {
   src?: string;
   className?: string;
 };
